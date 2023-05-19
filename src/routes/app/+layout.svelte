@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "../app.css"
+  import "../../app.css"
 </script>
 
 <div class="h-screen min-h-fit bg-tbg py-5 px-10">
@@ -23,6 +23,7 @@
         </a>
       </div>
     </div>
+
     <slot />
   </div>
 </div>
