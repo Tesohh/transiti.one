@@ -7,8 +7,12 @@
 </script>
 
 <h1>welcome bro</h1>
-{#if $storedToken}
-  <App />
-{:else}
-  <LoginWithSpotify />
-{/if}
+{#await $storedToken}
+  loading...
+{:then a}
+  {#if $storedToken}
+    <App />
+  {:else}
+    <LoginWithSpotify />
+  {/if}
+{/await}
