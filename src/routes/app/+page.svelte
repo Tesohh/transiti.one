@@ -1,8 +1,8 @@
 <script lang="ts">
   import { page } from "$app/stores"
   import LoginWithSpotify from "$lib/components/LoginWithSpotify.svelte"
-  import "../app.css"
-  import { storedToken } from "../stores"
+  import "../../app.css"
+  import { storedToken } from "../../stores"
   import SpotifyWebApi from "spotify-web-api-js"
   const spotifyApi = new SpotifyWebApi()
 </script>

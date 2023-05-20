@@ -43,10 +43,12 @@
   }
 
   onMount(() => {
-    redirectUri = encodeURIComponent(window.location.href.slice(0, -1))
+    let cleanPath = window.location.pathname
+    if (cleanPath.at(-1) == "/") cleanPath = cleanPath.slice(0, -1)
+    redirectUri = encodeURIComponent(window.location.origin + cleanPath)
     setToken()
   })
 </script>
 
-login brodero
+{redirectUri}
 <SpotifyLoginButton {authWithSpotify} />
