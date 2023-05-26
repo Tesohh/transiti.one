@@ -10,12 +10,13 @@
     token_type: string
   }
   const spotifyApi = new SpotifyAPI()
+  export let overridePath: string | null = null
 
   const clientId = PUBLIC_SPOTIFY_CLIENT_ID
   const spotifyAuthEndpoint = "https://accounts.spotify.com/authorize"
   let redirectUri = ``
   const scopes = ["user-library-modify"].join("%20")
-  const showDialog = true
+  const showDialog = false
 
   function authWithSpotify() {
     const completeAuthLink = `${spotifyAuthEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scopes=${scopes}&response_type=token&show_dialog=${showDialog}`
@@ -43,12 +44,18 @@
   }
 
   onMount(() => {
-    let cleanPath = window.location.pathname
+    let cleanPath = overridePath ? overridePath : window.location.pathname
     if (cleanPath.at(-1) == "/") cleanPath = cleanPath.slice(0, -1)
     redirectUri = encodeURIComponent(window.location.origin + cleanPath)
+
     setToken()
   })
 </script>
 
-{redirectUri}
+<!-- <div class="w-full md:w-1/2">
+  transiti.one is a webapp to help you find crossfade transitions on spotify.
+  You can login with spotify and freely add any transition you like, and search
+  any song you like.
+</div> -->
+{decodeURIComponent(redirectUri)}
 <SpotifyLoginButton {authWithSpotify} />

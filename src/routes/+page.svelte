@@ -11,6 +11,7 @@
   {#await spotifyApi.getMe() then me}
     <img src={me.images?.[0].url || ""} alt="my spotify profile" />
     {me.display_name}
+    <a href="transitions?id=1#{$page.url.hash}">go to transition</a>
   {/await}
 {:else}
   <LoginWithSpotify />

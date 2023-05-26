@@ -1,11 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/stores"
 </script>
 
-<h1>❌ Error</h1>
-
-<p>There was a problem with loading your page</p>
-
-<pre>
-    {JSON.stringify($page, null, 2)}
-  </pre>
+<pre>❌ [Status {$page.status}]: {$page.error?.message}</pre>
