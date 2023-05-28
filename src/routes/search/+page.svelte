@@ -6,26 +6,29 @@
   import LoginWithSpotify from "$lib/components/LoginWithSpotify.svelte"
   const spotifyApi = new SpotifyWebApi()
   let searches: SpotifyApi.TrackObjectFull[] = []
+  let query: string | undefined = undefined
   export let data
-  onMount(async () => {
-    if (data.query != null) {
-      searches = (await spotifyApi.searchTracks(data.query, { limit: 5 }))
-        .tracks.items
-      console.log(searches)
-    }
-  })
+  $: spotifyApi
+    .searchTracks(query || "", { limit: 5 })
+    .then((v) => (searches = v.tracks.items))
+  // onMount()
 </script>
 
 {#if $storedToken}
-  {#if data.query == null}
-    search function to be implemented
-  {:else}
-    <div class="w-full flex flex-col items-center">
+  <div class="w-full flex flex-col items-center">
+    <input
+      class="border-solid border-4 border-black mb-2"
+      bind:value={query}
+      placeholder="search for a song..."
+    />
+    {#if query == undefined || query == ""}
+      <span class="text-gray-300">songs will show up here</span>
+    {:else}
       {#each searches as track}
         <Track {track} redirectToSearches={true} />
       {/each}
-    </div>
-  {/if}
+    {/if}
+  </div>
 {:else}
   <LoginWithSpotify overridePath="/" />
 {/if}

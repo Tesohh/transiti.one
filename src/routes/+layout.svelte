@@ -21,7 +21,10 @@
       {#if $storedToken}
         <div class="flex grow flex-row-reverse text-gray-400">
           <!-- actions -->
-          <a class="flex flex-row space-x-4 ml-6" href="/example">
+          <a
+            class="flex flex-row space-x-4 ml-6"
+            href="search?redirect=PLACEHOLDER{$page.url.hash}"
+          >
             <span>🔎</span>
             <span class="hidden md:block">search</span>
           </a>
