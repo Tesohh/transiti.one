@@ -1,11 +1,11 @@
 <script lang="ts">
   import { fromURItoURL } from "$lib/utils"
   export let track: SpotifyApi.SingleTrackResponse
-  export let redirectToSearches: boolean = false
+  export let overridePath: string = ""
 </script>
 
-<div class="flex flex-col w-3/4 md:w-80">
-  <a href={redirectToSearches ? fromURItoURL(track.uri) : "//TODO"}>
+<div class="flex flex-col w-3/4 md:w-60">
+  <a href={overridePath ? overridePath : fromURItoURL(track.uri)}>
     <div class="flex w-full justify-center">
       <img src={track.album.images[0].url} alt="{track.name} album cover" />
     </div>

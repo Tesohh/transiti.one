@@ -23,7 +23,7 @@
           <!-- actions -->
           <a
             class="flex flex-row space-x-4 ml-6"
-            href="search?redirect=PLACEHOLDER{$page.url.hash}"
+            href="/search?redirect=/search/transitions{window.location.hash}"
           >
             <span>🔎</span>
             <span class="hidden md:block">search</span>

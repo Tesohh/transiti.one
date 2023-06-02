@@ -11,7 +11,8 @@
   $: spotifyApi
     .searchTracks(query || "", { limit: 5 })
     .then((v) => (searches = v.tracks.items))
-  // onMount()
+
+  onMount(() => document.getElementById("searchbox")?.focus())
 </script>
 
 {#if $storedToken}
@@ -20,12 +21,16 @@
       class="border-solid border-4 border-black mb-2"
       bind:value={query}
       placeholder="search for a song..."
+      id="searchbox"
     />
     {#if query == undefined || query == ""}
       <span class="text-gray-300">songs will show up here</span>
     {:else}
       {#each searches as track}
-        <Track {track} redirectToSearches={true} />
+        <Track
+          {track}
+          overridePath={`${data.redirectTo}/?sid=${track.id}${window.location.hash}`}
+        />
       {/each}
     {/if}
   </div>
