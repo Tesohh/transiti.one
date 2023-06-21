@@ -4,10 +4,15 @@
   export let overridePath: string = ""
 </script>
 
+<!--  -->
 <div class="flex flex-col w-3/4 md:w-60">
   <a href={overridePath ? overridePath : fromURItoURL(track.uri)}>
-    <div class="flex w-full justify-center">
-      <img src={track.album.images[0].url} alt="{track.name} album cover" />
+    <div class="bg-tbg">
+      <div
+        class="flex w-full justify-center transition duration-75 ease-in-out hover:opacity-70"
+      >
+        <img src={track.album.images[0].url} alt="{track.name} album cover" />
+      </div>
     </div>
     <span class="font-bold">{track.name}</span><br />
     <span class="text-gray-500">

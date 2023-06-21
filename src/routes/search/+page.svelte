@@ -7,6 +7,9 @@
   const spotifyApi = new SpotifyWebApi()
   let searches: SpotifyApi.TrackObjectFull[] = []
   let query: string | undefined = undefined
+  let additionalSearchParameters: string | undefined = undefined
+  let sidName: string = "sid"
+
   export let data
   $: spotifyApi
     .searchTracks(query || "", { limit: 5 })
@@ -26,10 +29,13 @@
     {#if query == undefined || query == ""}
       <span class="text-gray-300">songs will show up here</span>
     {:else}
+      <span class="text-gray-300">click a song to see its transitions</span>
       {#each searches as track}
         <Track
           {track}
-          overridePath={`${data.redirectTo}/?sid=${track.id}${window.location.hash}`}
+          overridePath={`${data.redirectTo}/?${sidName}=${track.id}${
+            additionalSearchParameters || ""
+          }${window.location.hash}`}
         />
       {/each}
     {/if}
