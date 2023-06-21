@@ -40,7 +40,7 @@
             <span>🔎</span>
             <span class="hidden md:block">search</span>
           </a>
-          <a class="flex flex-row space-x-4" href="/example">
+          <a class="flex flex-row space-x-4" href="/add{window.location.hash}">
             <span>➕</span>
             <span class="hidden md:block">new</span>
           </a>

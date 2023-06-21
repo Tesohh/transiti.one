@@ -7,7 +7,8 @@
   const spotifyApi = new SpotifyWebApi()
   let searches: SpotifyApi.TrackObjectFull[] = []
   let query: string | undefined = undefined
-  let additionalSearchParameters: string | undefined = undefined
+
+  let additionalSearchParameters: string | undefined = undefined // TODO: come glieli passo questi? con un altra query a /search?
   let sidName: string = "sid"
 
   export let data
