@@ -17,8 +17,13 @@
       {/await}
     </span>
     {#if data.transitions.length > 0}
-      {#each data.transitions as transition}
+      {#each data.transitions as transition, i}
         <Transition {transition} />
+        {#if i < data.transitions.length}
+          <span class="text-gray-300"
+            >----------------------------------------------</span
+          >
+        {/if}
       {/each}
     {:else}
       no transitions found!

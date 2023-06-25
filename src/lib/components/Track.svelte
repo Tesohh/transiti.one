@@ -5,7 +5,7 @@
 </script>
 
 <!--  -->
-<div class="flex flex-col w-3/4 md:w-60">
+<div class="flex flex-col w-3/4 md:w-60 h-full">
   <a href={overridePath ? overridePath : fromURItoURL(track.uri)}>
     <div class="bg-tbg">
       <div

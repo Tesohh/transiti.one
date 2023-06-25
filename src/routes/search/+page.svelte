@@ -8,15 +8,14 @@
   let searches: SpotifyApi.TrackObjectFull[] = []
   let query: string | undefined = undefined
 
-  let additionalSearchParameters: string | undefined = undefined // TODO: come glieli passo questi? con un altra query a /search?
-  let sidName: string = "sid"
-
   export let data
   $: spotifyApi
     .searchTracks(query || "", { limit: 5 })
     .then((v) => (searches = v.tracks.items))
 
-  onMount(() => document.getElementById("searchbox")?.focus())
+  onMount(() => {
+    document.getElementById("searchbox")?.focus()
+  })
 </script>
 
 {#if $storedToken}
@@ -34,9 +33,11 @@
       {#each searches as track}
         <Track
           {track}
-          overridePath={`${data.redirectTo}/?${sidName}=${track.id}${
-            additionalSearchParameters || ""
-          }${window.location.hash}`}
+          overridePath={`${data.redirectTo}?${data.customSid || "sid"}=${
+            track.id
+          }&${data.additionalSearchParameters.replace("?", "") || ""}${
+            window.location.hash
+          }`}
         />
       {/each}
     {/if}
